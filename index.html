@@ -2,9 +2,9 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     
-    <!-- ===== SEO الأساسي - محدث مع العنوان الصحيح ===== -->
+    <!-- ===== SEO الأساسي ===== -->
     <title>مندي باب المندب | مطعم يمني أصيل في الجداف اود ميثا - Mandi Bab Al Mandab</title>
     <meta name="description" content="مندي باب المندب - مطعم يمني أصيل في الجداف - اود ميثا، دبي. مندي لحم، مندي دجاج، حنيذ، ذبائح، مفطح، سنام حاشي. Mandi Bab Al Mandab - Authentic Yemeni Restaurant in Al Jadaf - Oud Metha, Dubai.">
     <meta name="keywords" content="مندي باب المندب, مطعم يمني الجداف, مندي لحم, مندي دجاج, حنيذ دبي, ذبائح يمنية, أفضل مطعم يمني في دبي, Al Jadaf, Oud Metha, Mandi Bab Al Mandab, Yemeni restaurant Jaddaf, best mandi Dubai">
@@ -32,7 +32,7 @@
     <meta name="twitter:description" content="Authentic Yemeni dishes. Mandi, Haneeth, sacrifices, platters. Al Jadaf - Oud Metha, Dubai.">
     <meta name="twitter:image" content="https://i.ibb.co/cKY5GQ5X/image.png">
     
-    <!-- ===== Geo Tags - محدث مع العنوان الصحيح ===== -->
+    <!-- ===== Geo Tags ===== -->
     <meta name="geo.region" content="AE-DU">
     <meta name="geo.placename" content="Al Jadaf - Oud Metha, Dubai">
     <meta name="geo.position" content="25.2161944;55.3151667">
@@ -78,14 +78,9 @@
             overflow-x: hidden;
             background: #0f0f0f;
             font-family: 'Inter', 'Noto Naskh Arabic', sans-serif;
-            cursor: none !important;
         }
         
-        a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card {
-            cursor: none !important;
-        }
-        
-        /* ===== مؤشر الماوس ===== */
+        /* ===== مؤشر الماوس للكمبيوتر ===== */
         .cursor-dot {
             width: 8px;
             height: 8px;
@@ -135,6 +130,30 @@
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
         }
         
+        /* ===== مؤشر الجوال - نقطة ذهبية تتبع الإصبع ===== */
+        .touch-dot {
+            display: none;
+            width: 12px;
+            height: 12px;
+            background: #c9a227;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 25px #c9a227, 0 0 45px rgba(201, 162, 39, 0.6);
+            transition: width 0.15s, height 0.15s, background 0.15s;
+        }
+        
+        .touch-dot.active {
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            box-shadow: 0 0 35px #ffd700, 0 0 70px rgba(255, 215, 0, 0.7);
+        }
+        
         .nav-glass {
             background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(20px);
@@ -178,7 +197,7 @@
             display: block;
         }
         
-        /* ===== صور الأطباق - بدون أي زوم ===== */
+        /* ===== صور الأطباق ===== */
         .dish-card {
             background: rgba(255,255,255,0.05);
             border-radius: 1rem;
@@ -221,7 +240,7 @@
             font-size: 1.125rem;
         }
         
-        /* ===== صور الذبائح - بدون أي زوم ===== */
+        /* ===== صور الذبائح ===== */
         .special-card {
             background: rgba(255,255,255,0.05);
             border-radius: 1rem;
@@ -248,7 +267,7 @@
             padding: 1.25rem;
         }
         
-        /* ===== صورة About ===== */
+        /* ===== صورة About - متجاوبة مع الجوال ===== */
         .about-image {
             width: 100%;
             height: 500px;
@@ -400,22 +419,90 @@
             z-index: 2;
         }
         
-        /* ===== Hide cursor on mobile ===== */
+        /* ===== تحسينات الجوال ===== */
         @media (max-width: 768px) {
+            /* إظهار مؤشر الجوال وإخفاء مؤشر الكمبيوتر */
             .cursor-dot, .cursor-outline {
                 display: none;
             }
+            
+            .touch-dot {
+                display: block;
+            }
+            
             body, a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card {
-                cursor: auto !important;
+                cursor: default;
+            }
+            
+            /* تكبير الخطوط للجوال */
+            html {
+                font-size: 18px;
+            }
+            
+            /* تصغير صورة About */
+            .about-image {
+                height: 350px;
+            }
+            
+            /* تكبير الأزرار */
+            .px-8.py-4 {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+            
+            /* تكبير المسافات */
+            .dish-info, .special-card-content {
+                padding: 1.5rem;
+            }
+            
+            /* تكبير أسماء الأطباق */
+            .dish-name {
+                font-size: 1.4rem;
+            }
+            
+            /* تكبير الأسعار */
+            .dish-price {
+                font-size: 1.3rem;
+            }
+            
+            /* تحسين شريط التنقل للجوال */
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* تحسينات للأجهزة الصغيرة جداً */
+        @media (max-width: 480px) {
+            html {
+                font-size: 16px;
+            }
+            
+            .about-image {
+                height: 280px;
+            }
+            
+            .dish-image, .special-card-image {
+                height: 180px;
+            }
+            
+            .dish-name {
+                font-size: 1.2rem;
+            }
+            
+            .dish-price {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body class="bg-dark text-light antialiased" dir="ltr">
 
-    <!-- ===== مؤشر الماوس ===== -->
+    <!-- ===== مؤشر الماوس للكمبيوتر ===== -->
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
+    
+    <!-- ===== مؤشر الجوال - نقطة ذهبية تتبع الإصبع ===== -->
+    <div class="touch-dot" id="touch-dot"></div>
 
     <!-- ===== LOADER ===== -->
     <div class="loader" id="loader">
@@ -434,20 +521,20 @@
         </div>
     </div>
 
-    <!-- ===== NAVIGATION ===== -->
+    <!-- ===== NAVIGATION - مع خيارات إضافية ===== -->
     <nav class="fixed top-0 left-0 w-full z-50 nav-glass" id="navbar">
-        <div class="mx-4 mt-4 rounded-full px-6 py-3 flex items-center justify-between max-w-7xl mx-auto">
+        <div class="mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-full px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between max-w-7xl mx-auto">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
+            <a href="#" class="flex items-center gap-2 sm:gap-3">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
                     <img src="https://i.ibb.co/cKY5GQ5X/image.png" alt="Mandi Bab Al Mandab" class="w-full h-full object-cover">
                 </div>
-                <div class="hidden sm:block">
-                    <h1 class="font-serif text-lg font-bold text-white leading-none">
+                <div class="hidden xs:block sm:hidden md:block">
+                    <h1 class="font-serif text-sm sm:text-base md:text-lg font-bold text-white leading-none">
                         <span class="lang-en">Mandi Bab Al Mandab</span>
                         <span class="lang-ar">مندي باب المندب</span>
                     </h1>
-                    <p class="text-xs text-secondary tracking-wider mt-0.5">
+                    <p class="text-[10px] sm:text-xs text-secondary tracking-wider mt-0.5">
                         <span class="lang-en">Authentic Yemeni Cuisine</span>
                         <span class="lang-ar">مطبخ يمني أصيل</span>
                     </p>
@@ -478,29 +565,75 @@
                 </a>
             </div>
             
-            <!-- Right Side -->
-            <div class="flex items-center gap-3">
-                <button onclick="toggleLanguage()" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all">
-                    <span class="text-xs font-bold text-white" id="lang-btn">AR</span>
-                </button>
-                <a href="https://wa.me/971555852724" target="_blank" class="hidden md:flex px-5 py-2.5 bg-secondary text-primary rounded-full font-semibold text-sm uppercase tracking-wider hover:bg-secondary/90 transition-colors items-center gap-2">
-                    <i class="fab fa-whatsapp"></i>
-                    <span class="lang-en">WhatsApp</span>
-                    <span class="lang-ar">واتساب</span>
+            <!-- Right Side - خيارات إضافية -->
+            <div class="flex items-center gap-1 sm:gap-2 md:gap-3">
+                <!-- خيارات سريعة للجوال والكمبيوتر -->
+                <a href="https://www.google.com/maps?q=25.2161944,55.3151667" target="_blank" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 items-center justify-center hover:bg-secondary hover:border-secondary transition-all group" title="Location / الموقع">
+                    <i class="fas fa-map-marker-alt text-white/80 group-hover:text-primary text-sm md:text-base"></i>
+                    <span class="sr-only">Location</span>
                 </a>
+                
+                <a href="tel:+971555852724" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 items-center justify-center hover:bg-secondary hover:border-secondary transition-all group" title="Call / اتصال">
+                    <i class="fas fa-phone text-white/80 group-hover:text-primary text-sm md:text-base"></i>
+                    <span class="sr-only">Call</span>
+                </a>
+                
+                <a href="#specials" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 items-center justify-center hover:bg-secondary hover:border-secondary transition-all group" title="Offers / العروض">
+                    <i class="fas fa-tag text-white/80 group-hover:text-primary text-sm md:text-base"></i>
+                    <span class="sr-only">Offers</span>
+                </a>
+                
+                <a href="https://wa.me/971555852724" target="_blank" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full bg-green-600/20 border border-green-600/50 items-center justify-center hover:bg-green-600 transition-all group" title="Order / اطلب">
+                    <i class="fab fa-whatsapp text-green-500 group-hover:text-white text-sm md:text-base"></i>
+                    <span class="sr-only">Order</span>
+                </a>
+                
+                <!-- Language Switcher -->
+                <button onclick="toggleLanguage()" class="w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all group">
+                    <span class="text-[10px] md:text-xs font-bold text-white group-hover:text-primary" id="lang-btn">AR</span>
+                </button>
+                
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-toggle" class="lg:hidden w-8 h-8 md:w-9 md:h-9 flex flex-col items-center justify-center gap-1 group">
+                    <span class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-5 group-hover:bg-secondary"></span>
+                    <span class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-5 group-hover:bg-secondary"></span>
+                    <span class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-5 group-hover:bg-secondary"></span>
+                </button>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-0 bg-primary z-40 flex items-center justify-center hidden" id="mobile-menu">
+        <div class="text-center">
+            <a href="#about" class="block text-2xl sm:text-3xl font-serif text-white mb-4 sm:mb-6 hover:text-secondary transition-colors mobile-link">من نحن</a>
+            <a href="#menu" class="block text-2xl sm:text-3xl font-serif text-white mb-4 sm:mb-6 hover:text-secondary transition-colors mobile-link">القائمة</a>
+            <a href="#specials" class="block text-2xl sm:text-3xl font-serif text-white mb-4 sm:mb-6 hover:text-secondary transition-colors mobile-link">الذبائح</a>
+            <a href="#reviews" class="block text-2xl sm:text-3xl font-serif text-white mb-4 sm:mb-6 hover:text-secondary transition-colors mobile-link">التقييمات</a>
+            <a href="#contact" class="block text-2xl sm:text-3xl font-serif text-white hover:text-secondary transition-colors mobile-link">اتصل بنا</a>
+            <div class="flex justify-center gap-4 mt-8">
+                <a href="https://wa.me/971555852724" target="_blank" class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-white text-xl"></i>
+                </a>
+                <a href="tel:+971555852724" class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+                    <i class="fas fa-phone text-primary text-xl"></i>
+                </a>
+                <a href="https://www.google.com/maps?q=25.2161944,55.3151667" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== HERO SECTION ===== -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-section" id="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content text-center px-4 max-w-5xl mx-auto">
-            <p class="text-secondary text-sm uppercase tracking-[0.3em] font-medium mb-6">
+            <p class="text-secondary text-xs sm:text-sm uppercase tracking-[0.3em] font-medium mb-4 sm:mb-6">
                 <span class="lang-en">Authentic Yemeni Cuisine</span>
                 <span class="lang-ar">مطبخ يمني أصيل</span>
             </p>
-            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 <span class="block">
                     <span class="lang-en">Mandi</span>
                     <span class="lang-ar">مندي</span>
@@ -510,16 +643,16 @@
                     <span class="lang-ar">باب المندب</span>
                 </span>
             </h1>
-            <p class="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p class="text-white/90 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
                 <span class="lang-en">Experience the rich heritage of Yemeni cuisine, from traditional Mandi to premium sacrifices.</span>
                 <span class="lang-ar">جرب التراث الغني للمطبخ اليمني، من المندي التقليدي إلى الذبائح الممتازة.</span>
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button onclick="openMenu()" class="px-8 py-4 bg-secondary text-primary rounded-full font-semibold text-lg uppercase tracking-wider w-full sm:w-auto hover:bg-secondary/90 transition-colors">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-2">
+                <button onclick="openMenu()" class="px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-primary rounded-full font-semibold text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto hover:bg-secondary/90 transition-colors">
                     <span class="lang-en">View Menu</span>
                     <span class="lang-ar">عرض القائمة</span>
                 </button>
-                <a href="https://wa.me/971555852724" target="_blank" class="px-8 py-4 border-2 border-white text-white rounded-full font-semibold text-lg uppercase tracking-wider w-full sm:w-auto text-center hover:bg-white hover:text-dark transition-all flex items-center justify-center gap-2">
+                <a href="https://wa.me/971555852724" target="_blank" class="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white rounded-full font-semibold text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto text-center hover:bg-white hover:text-dark transition-all flex items-center justify-center gap-2">
                     <i class="fab fa-whatsapp"></i>
                     <span class="lang-en">WhatsApp</span>
                     <span class="lang-ar">واتساب</span>
@@ -529,33 +662,33 @@
     </section>
 
     <!-- ===== STATS SECTION ===== -->
-    <section class="py-16 bg-dark relative">
+    <section class="py-12 sm:py-16 bg-dark relative">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
                 <div class="text-center">
-                    <div class="text-4xl font-serif font-bold text-secondary mb-1">4.8</div>
-                    <div class="text-white/60 text-xs uppercase tracking-wider">
+                    <div class="text-3xl sm:text-4xl font-serif font-bold text-secondary mb-1">4.8</div>
+                    <div class="text-white/60 text-[10px] sm:text-xs uppercase tracking-wider">
                         <span class="lang-en">Google Rating</span>
                         <span class="lang-ar">تقييم جوجل</span>
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-serif font-bold text-secondary mb-1">1000+</div>
-                    <div class="text-white/60 text-xs uppercase tracking-wider">
+                    <div class="text-3xl sm:text-4xl font-serif font-bold text-secondary mb-1">1000+</div>
+                    <div class="text-white/60 text-[10px] sm:text-xs uppercase tracking-wider">
                         <span class="lang-en">Reviews</span>
                         <span class="lang-ar">تقييم</span>
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-serif font-bold text-secondary mb-1">24/7</div>
-                    <div class="text-white/60 text-xs uppercase tracking-wider">
+                    <div class="text-3xl sm:text-4xl font-serif font-bold text-secondary mb-1">24/7</div>
+                    <div class="text-white/60 text-[10px] sm:text-xs uppercase tracking-wider">
                         <span class="lang-en">Open</span>
                         <span class="lang-ar">مفتوح</span>
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-serif font-bold text-secondary mb-1">15+</div>
-                    <div class="text-white/60 text-xs uppercase tracking-wider">
+                    <div class="text-3xl sm:text-4xl font-serif font-bold text-secondary mb-1">15+</div>
+                    <div class="text-white/60 text-[10px] sm:text-xs uppercase tracking-wider">
                         <span class="lang-en">Years</span>
                         <span class="lang-ar">سنة</span>
                     </div>
@@ -564,10 +697,10 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT SECTION - العنوان محدث ===== -->
-    <section class="py-24 bg-dark" id="about">
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="py-16 sm:py-24 bg-dark" id="about">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <!-- Image Side -->
                 <div class="relative">
                     <img 
@@ -575,9 +708,9 @@
                         alt="Mandi Bab Al Mandab Restaurant - مطعم مندي باب المندب" 
                         class="about-image"
                     >
-                    <div class="absolute -bottom-4 -right-4 bg-secondary text-primary p-4 rounded-xl shadow-2xl">
-                        <div class="text-3xl font-serif font-bold">15+</div>
-                        <div class="text-xs uppercase">
+                    <div class="absolute -bottom-4 -right-4 bg-secondary text-primary p-3 sm:p-4 rounded-xl shadow-2xl">
+                        <div class="text-2xl sm:text-3xl font-serif font-bold">15+</div>
+                        <div class="text-[10px] sm:text-xs uppercase">
                             <span class="lang-en">Years</span>
                             <span class="lang-ar">سنة</span>
                         </div>
@@ -586,61 +719,61 @@
                 
                 <!-- Content Side -->
                 <div class="lg:pl-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 rounded-full border-2 border-secondary overflow-hidden">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-secondary overflow-hidden">
                             <img src="https://i.ibb.co/cKY5GQ5X/image.png" alt="Mandi Bab Al Mandab Logo" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h3 class="font-serif text-2xl font-bold text-white">
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
                                 <span class="lang-en">Mandi Bab Al Mandab</span>
                                 <span class="lang-ar">مندي باب المندب</span>
                             </h3>
-                            <p class="text-secondary">Est. 2008</p>
+                            <p class="text-secondary text-sm sm:text-base">Est. 2008</p>
                         </div>
                     </div>
-                    <p class="text-secondary uppercase tracking-[0.2em] text-sm mb-3">
+                    <p class="text-secondary uppercase tracking-[0.2em] text-[10px] sm:text-sm mb-2 sm:mb-3">
                         <span class="lang-en">Our Story</span>
                         <span class="lang-ar">قصتنا</span>
                     </p>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                         <span class="lang-en">Heritage of Authentic Yemeni Flavors</span>
                         <span class="lang-ar">إرث النكهات اليمنية الأصيلة</span>
                     </h2>
                     <div class="section-divider ml-0"></div>
-                    <p class="text-white/70 text-base leading-relaxed mb-4">
+                    <p class="text-white/70 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
                         <span class="lang-en">Welcome to Mandi Bab Al Mandab, your destination for authentic Yemeni cuisine in Al Jadaf - Oud Metha. We proudly serve traditional dishes prepared using time-honored methods and premium ingredients.</span>
                         <span class="lang-ar">مرحبا بكم في مندي باب المندب، وجهتكم للمطبخ اليمني الأصيل في الجداف - اود ميثا. نقدم الأطباق التقليدية المحضرة بطرق أصيلة ومكونات ممتازة.</span>
                     </p>
-                    <p class="text-white/70 text-base leading-relaxed mb-8">
+                    <p class="text-white/70 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                         <span class="lang-en">Our kitchen is led by a team of professional Yemeni chefs, bringing years of expertise to every dish.</span>
                         <span class="lang-ar">يشرف على مطبخنا فريق من الطهاة اليمنيين المحترفين، أصحاب خبرة طويلة في إعداد المندي والحنيذ والمضغوط.</span>
                     </p>
-                    <div class="flex gap-6">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                                <i class="fas fa-award text-secondary"></i>
+                    <div class="flex flex-wrap gap-4 sm:gap-6">
+                        <div class="flex items-center gap-2 sm:gap-3">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                                <i class="fas fa-award text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <div class="text-white font-semibold text-sm">
+                                <div class="text-white font-semibold text-xs sm:text-sm">
                                     <span class="lang-en">Premium Quality</span>
                                     <span class="lang-ar">جودة ممتازة</span>
                                 </div>
-                                <div class="text-white/50 text-xs">
+                                <div class="text-white/50 text-[10px] sm:text-xs">
                                     <span class="lang-en">Local & Imported</span>
                                     <span class="lang-ar">محلي ومستورد</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                                <i class="fas fa-users text-secondary"></i>
+                        <div class="flex items-center gap-2 sm:gap-3">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                                <i class="fas fa-users text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <div class="text-white font-semibold text-sm">
+                                <div class="text-white font-semibold text-xs sm:text-sm">
                                     <span class="lang-en">Family Friendly</span>
                                     <span class="lang-ar">مناسب للعائلات</span>
                                 </div>
-                                <div class="text-white/50 text-xs">
+                                <div class="text-white/50 text-[10px] sm:text-xs">
                                     <span class="lang-en">Private Cabins</span>
                                     <span class="lang-ar">كبائن خاصة</span>
                                 </div>
@@ -652,25 +785,25 @@
         </div>
     </section>
 
-    <!-- ===== MENU SECTION - 6 أطباق ===== -->
-    <section class="py-24 bg-gradient-to-b from-dark to-primary/10" id="menu">
+    <!-- ===== MENU SECTION ===== -->
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-dark to-primary/10" id="menu">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <p class="text-secondary uppercase tracking-[0.3em] text-sm mb-3">
+            <div class="text-center mb-12 sm:mb-16">
+                <p class="text-secondary uppercase tracking-[0.3em] text-[10px] sm:text-sm mb-2 sm:mb-3">
                     <span class="lang-en">Our Menu</span>
                     <span class="lang-ar">قائمتنا</span>
                 </p>
-                <h2 class="font-serif text-4xl md:text-6xl font-bold text-white mb-4">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4">
                     <span class="lang-en">Signature Dishes</span>
                     <span class="lang-ar">أطباقنا المميزة</span>
                 </h2>
                 <div class="section-divider"></div>
             </div>
             
-            <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
             
-            <div class="text-center mt-16">
-                <button onclick="openMenu()" class="px-10 py-4 bg-secondary text-primary rounded-full font-bold text-lg uppercase tracking-wider hover:bg-secondary/90 transition-colors">
+            <div class="text-center mt-12 sm:mt-16">
+                <button onclick="openMenu()" class="px-6 sm:px-10 py-3 sm:py-4 bg-secondary text-primary rounded-full font-bold text-base sm:text-lg uppercase tracking-wider hover:bg-secondary/90 transition-colors">
                     <span class="lang-en">View Full Menu</span>
                     <span class="lang-ar">عرض القائمة الكاملة</span>
                     <i class="fas fa-arrow-right ml-2"></i>
@@ -679,248 +812,46 @@
         </div>
     </section>
 
-    <!-- ===== SPECIALS SECTION - 10 ذبائح وصواني ===== -->
-    <section class="py-24 bg-dark" id="specials">
+    <!-- ===== SPECIALS SECTION ===== -->
+    <section class="py-16 sm:py-24 bg-dark" id="specials">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <p class="text-secondary uppercase tracking-[0.3em] text-sm mb-3">
+            <div class="text-center mb-12 sm:mb-16">
+                <p class="text-secondary uppercase tracking-[0.3em] text-[10px] sm:text-sm mb-2 sm:mb-3">
                     <span class="lang-en">Special Offerings</span>
                     <span class="lang-ar">عروض خاصة</span>
                 </p>
-                <h2 class="font-serif text-4xl md:text-6xl font-bold text-white mb-4">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4">
                     <span class="lang-en">Sacrifices & Platters</span>
                     <span class="lang-ar">الذبائح والصواني</span>
                 </h2>
                 <div class="section-divider"></div>
             </div>
             
-            <div id="specials-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="specials-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
         </div>
     </section>
 
     <!-- ===== REVIEWS SECTION ===== -->
-    <section class="py-24 bg-gradient-to-b from-dark to-primary/10" id="reviews">
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-dark to-primary/10" id="reviews">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <p class="text-secondary uppercase tracking-[0.3em] text-sm mb-3">
+            <div class="text-center mb-12 sm:mb-16">
+                <p class="text-secondary uppercase tracking-[0.3em] text-[10px] sm:text-sm mb-2 sm:mb-3">
                     <span class="lang-en">Customer Reviews</span>
                     <span class="lang-ar">تقييمات العملاء</span>
                 </p>
-                <h2 class="font-serif text-4xl md:text-6xl font-bold text-white mb-4">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4">
                     <span class="lang-en">What People Say</span>
                     <span class="lang-ar">ماذا يقولون عنا</span>
                 </h2>
                 <div class="section-divider"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Review 1 - English -->
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "Bab Al Mandab Mandi Restaurant is hands down one of the best places in town for authentic Yemeni mandi. The flavors are rich, well-balanced, and deeply traditional, reflecting true Yemeni culinary heritage."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · 3 weeks ago
-                    </div>
-                </div>
-                
-                <!-- Review 2 - French -->
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "Le service était parfait, la serveuse nous a conseillé sur tous les différents plats. On a pris le meat makhmoud qui était à tomber par terre tellement il était tendre."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · 3 semaines
-                    </div>
-                </div>
-                
-                <!-- Review 3 - Arabic -->
-                <div class="review-card" dir="rtl">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "تجربة رائعة بكل المقاييس في باب المندب - الجداف. طلبت مخمود لحم وكان اللحم فريش جدا وطعمه مذهل."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · منذ شهر
-                    </div>
-                </div>
-                
-                <!-- Review 4 - Arabic -->
-                <div class="review-card" dir="rtl">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "من افضل المطاعم اليمنية الي زرتها، اول مرة بجرب المخمود باللحم وطعمه ولا اطيب، الخدمة ممتازة بوجود الكابتن زكريا."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · منذ شهر
-                    </div>
-                </div>
-                
-                <!-- Review 5 - English -->
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "If you wish to explore the traditional taste of YAMAN FOOD this restaurant is a great choice. It's a truly family friendly place, and the staff are very knowledgeable."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · 3 weeks ago
-                    </div>
-                </div>
-                
-                <!-- Review 6 - Arabic -->
-                <div class="review-card" dir="rtl">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "من أجمل المطاعم التي تقدم المأكولات اليمنية الأصيلة بنكهات مميزة. يتميز مطعم باب المندب بتنوع أطباقه وجودة مكوناته الطازجة."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · منذ 3 أشهر
-                    </div>
-                </div>
-                
-                <!-- Review 7 - English -->
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "Great restaurant with delicious food and fast service. Everything we ordered was fresh and full of flavor. The staff are very friendly and helpful. Highly recommended!"
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · 2 weeks ago
-                    </div>
-                </div>
-                
-                <!-- Review 8 - Arabic -->
-                <div class="review-card" dir="rtl">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "ماشاءالله انصح الجميع بزيارته وتجربه الأكل لذيذ جدا وخدمات ممتازه والأجواء روعه ومكان خاص للعوائل."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · منذ 5 أشهر
-                    </div>
-                </div>
-                
-                <!-- Review 9 - English -->
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "I finally tried Mandi Bab Almandab, and the experience was fantastic! I ordered the Chicken Mathbi, and it exceeded all expectations. This is the best mandi I've had on Wasl Road so far!"
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · 7 months ago
-                    </div>
-                </div>
-                
-                <!-- Review 10 - Arabic -->
-                <div class="review-card" dir="rtl">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "مكان نظيف ومرتب وشرح وفي جلسات عربيه خاصه. المظبي دجاج ممتاز جدا الدجاج فرش ومبهر عدل."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · منذ 5 أشهر
-                    </div>
-                </div>
-                
-                <!-- Review 11 - English -->
-                <div class="review-card">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "Good atmosphere, with outdoor, indoor & private cabins for the family. Food is delicious and staffs are so friendly & kind. Badar & Abdul Majid hosted us till the end."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · 1 month ago
-                    </div>
-                </div>
-                
-                <!-- Review 12 - Arabic -->
-                <div class="review-card" dir="rtl">
-                    <div class="review-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="review-text">
-                        "تجربة ولا أروع بكل معنى الكلمة! مطعم يمني أصيل جمع بين الطعم الحقيقي والأجواء الدافئة والخدمة الراقية."
-                    </p>
-                    <div class="review-meta">
-                        ★★★★★ · منذ شهر
-                    </div>
-                </div>
+            <div id="reviews-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Reviews will be populated by JavaScript -->
             </div>
             
-            <div class="text-center mt-12">
-                <p class="text-white/50 text-sm">
+            <div class="text-center mt-8 sm:mt-12">
+                <p class="text-white/50 text-xs sm:text-sm">
                     <span class="lang-en">Based on 1000+ Google reviews</span>
                     <span class="lang-ar">بناءً على أكثر من ١٠٠٠ تقييم في جوجل</span>
                 </p>
@@ -929,86 +860,86 @@
     </section>
 
     <!-- ===== CONTACT SECTION ===== -->
-    <section class="py-24 relative contact-section" id="contact">
+    <section class="py-16 sm:py-24 relative contact-section" id="contact">
         <div class="contact-overlay"></div>
         <div class="contact-content max-w-4xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <p class="text-secondary uppercase tracking-[0.3em] text-sm mb-3">
+            <div class="text-center mb-8 sm:mb-12">
+                <p class="text-secondary uppercase tracking-[0.3em] text-[10px] sm:text-sm mb-2 sm:mb-3">
                     <span class="lang-en">Get in Touch</span>
                     <span class="lang-ar">تواصل معنا</span>
                 </p>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
                     <span class="lang-en">Contact Us</span>
                     <span class="lang-ar">اتصل بنا</span>
                 </h2>
                 <div class="section-divider"></div>
             </div>
             
-            <div class="bg-dark/80 backdrop-blur-md rounded-2xl p-8 border border-white/10">
-                <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-dark/80 backdrop-blur-md rounded-2xl p-4 sm:p-8 border border-white/10">
+                <div class="grid md:grid-cols-2 gap-4 sm:gap-8">
                     <!-- WhatsApp -->
-                    <div class="text-center p-6 bg-white/5 rounded-xl">
-                        <div class="w-20 h-20 mx-auto bg-green-600/20 rounded-full flex items-center justify-center mb-4">
-                            <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+                    <div class="text-center p-4 sm:p-6 bg-white/5 rounded-xl">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-green-600/20 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                            <i class="fab fa-whatsapp text-3xl sm:text-4xl text-green-500"></i>
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-white mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-white mb-2">
                             <span class="lang-en">WhatsApp</span>
                             <span class="lang-ar">واتساب</span>
                         </h3>
-                        <p class="text-white/70 text-sm mb-4">
+                        <p class="text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">
                             <span class="lang-en">Quick response on WhatsApp</span>
                             <span class="lang-ar">رد سريع عبر واتساب</span>
                         </p>
-                        <a href="https://wa.me/971555852724" target="_blank" class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-full font-semibold hover:bg-green-700 transition-all gap-2">
+                        <a href="https://wa.me/971555852724" target="_blank" class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-full font-semibold text-sm sm:text-base hover:bg-green-700 transition-all gap-2">
                             <i class="fab fa-whatsapp"></i>
                             <span class="lang-en">Chat Now</span>
                             <span class="lang-ar">محادثة الآن</span>
                         </a>
                     </div>
                     
-                    <!-- Email - Coming Soon (مؤقت) -->
-                    <div class="text-center p-6 bg-white/5 rounded-xl opacity-75">
-                        <div class="w-20 h-20 mx-auto bg-secondary/20 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-envelope text-4xl text-secondary"></i>
+                    <!-- Call Us -->
+                    <div class="text-center p-4 sm:p-6 bg-white/5 rounded-xl">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-secondary/20 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                            <i class="fas fa-phone text-3xl sm:text-4xl text-secondary"></i>
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-white mb-2">
-                            <span class="lang-en">Email</span>
-                            <span class="lang-ar">البريد الإلكتروني</span>
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-white mb-2">
+                            <span class="lang-en">Call Us</span>
+                            <span class="lang-ar">اتصل بنا</span>
                         </h3>
-                        <p class="text-white/70 text-sm mb-4">
-                            <span class="lang-en">Send us an email</span>
-                            <span class="lang-ar">راسلنا عبر البريد</span>
+                        <p class="text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">
+                            <span class="lang-en">Speak directly with our team</span>
+                            <span class="lang-ar">تحدث مباشرة مع فريقنا</span>
                         </p>
-                        <div class="inline-flex items-center px-6 py-3 bg-white/10 text-white/50 rounded-full font-semibold cursor-not-allowed gap-2">
-                            <i class="fas fa-envelope"></i>
-                            <span class="lang-en">Coming Soon</span>
-                            <span class="lang-ar">قريباً</span>
-                        </div>
+                        <a href="tel:+971555852724" class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-secondary text-primary rounded-full font-semibold text-sm sm:text-base hover:bg-secondary/90 transition-all gap-2">
+                            <i class="fas fa-phone"></i>
+                            <span class="lang-en">Call Now</span>
+                            <span class="lang-ar">اتصل الآن</span>
+                        </a>
                     </div>
                 </div>
                 
                 <!-- Phone Numbers -->
-                <div class="mt-8 pt-8 border-t border-white/10">
-                    <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <div class="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/10">
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                                <i class="fas fa-phone text-secondary"></i>
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                                <i class="fas fa-phone text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <p class="text-white/80 font-semibold">04 292 5051</p>
-                                <p class="text-white/50 text-xs">
+                                <p class="text-white/80 font-semibold text-sm sm:text-base">04 292 5051</p>
+                                <p class="text-white/50 text-[10px] sm:text-xs">
                                     <span class="lang-en">Main Line</span>
                                     <span class="lang-ar">رقم رئيسي</span>
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                                <i class="fas fa-mobile-alt text-secondary"></i>
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                                <i class="fas fa-mobile-alt text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <p class="text-white/80 font-semibold">055 585 2724</p>
-                                <p class="text-white/50 text-xs">
+                                <p class="text-white/80 font-semibold text-sm sm:text-base">055 585 2724</p>
+                                <p class="text-white/50 text-[10px] sm:text-xs">
                                     <span class="lang-en">Mobile</span>
                                     <span class="lang-ar">جوال</span>
                                 </p>
@@ -1020,79 +951,79 @@
         </div>
     </section>
 
-    <!-- ===== LOCATION SECTION - العنوان محدث ===== -->
-    <section class="py-24 bg-dark" id="location">
+    <!-- ===== LOCATION SECTION ===== -->
+    <section class="py-16 sm:py-24 bg-dark" id="location">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <p class="text-secondary uppercase tracking-[0.3em] text-sm mb-3">
+            <div class="text-center mb-12 sm:mb-16">
+                <p class="text-secondary uppercase tracking-[0.3em] text-[10px] sm:text-sm mb-2 sm:mb-3">
                     <span class="lang-en">Visit Us</span>
                     <span class="lang-ar">زورنا</span>
                 </p>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
                     <span class="lang-en">Our Location</span>
                     <span class="lang-ar">موقعنا</span>
                 </h2>
                 <div class="section-divider"></div>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-12">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12">
                 <!-- Contact Info -->
-                <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
-                    <h3 class="font-serif text-2xl font-bold text-white mb-6">
+                <div class="bg-white/5 rounded-2xl p-4 sm:p-8 border border-white/10">
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
                         <span class="lang-en">Contact Information</span>
                         <span class="lang-ar">معلومات الاتصال</span>
                     </h3>
-                    <div class="space-y-6">
-                        <!-- Address - محدث -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-map-marker-alt text-secondary"></i>
+                    <div class="space-y-4 sm:space-y-6">
+                        <!-- Address -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">
+                                <h4 class="text-white font-semibold text-xs sm:text-sm mb-1">
                                     <span class="lang-en">Address</span>
                                     <span class="lang-ar">العنوان</span>
                                 </h4>
-                                <p class="text-white/70 text-sm">
+                                <p class="text-white/70 text-xs sm:text-sm">
                                     <span class="lang-en">Al Jadaf - Oud Metha, Dubai, UAE</span>
                                     <span class="lang-ar">الجداف - اود ميثا، دبي، الإمارات</span>
                                 </p>
-                                <p class="text-white/50 text-xs mt-1">
+                                <p class="text-white/50 text-[10px] sm:text-xs mt-1">
                                     25°12'58.3"N 55°18'54.6"E
                                 </p>
                             </div>
                         </div>
                         
                         <!-- Phone -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-phone text-secondary"></i>
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">
+                                <h4 class="text-white font-semibold text-xs sm:text-sm mb-1">
                                     <span class="lang-en">Phone</span>
                                     <span class="lang-ar">الهاتف</span>
                                 </h4>
-                                <p class="text-white/70 text-sm">04 292 5051</p>
-                                <p class="text-white/70 text-sm">055 585 2724</p>
+                                <p class="text-white/70 text-xs sm:text-sm">04 292 5051</p>
+                                <p class="text-white/70 text-xs sm:text-sm">055 585 2724</p>
                             </div>
                         </div>
                         
                         <!-- Hours -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-clock text-secondary"></i>
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-secondary text-sm sm:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">
+                                <h4 class="text-white font-semibold text-xs sm:text-sm mb-1">
                                     <span class="lang-en">Opening Hours</span>
                                     <span class="lang-ar">ساعات العمل</span>
                                 </h4>
-                                <p class="text-white/70 text-sm">
+                                <p class="text-white/70 text-xs sm:text-sm">
                                     <span class="lang-en">12:00 PM – 12:00 AM</span>
                                     <span class="lang-ar">١٢:٠٠ ظهراً – ١٢:٠٠ صباحاً</span>
                                 </p>
-                                <p class="text-white/50 text-xs">
+                                <p class="text-white/50 text-[10px] sm:text-xs">
                                     <span class="lang-en">Daily</span>
                                     <span class="lang-ar">يومياً</span>
                                 </p>
@@ -1100,36 +1031,36 @@
                         </div>
                     </div>
                     
-                    <!-- Social Icons - بدون روابط (مؤقت) -->
-                    <div class="mt-8 pt-6 border-t border-white/10">
-                        <h4 class="text-white font-semibold mb-4">
+                    <!-- Social Icons -->
+                    <div class="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/10">
+                        <h4 class="text-white font-semibold text-sm sm:text-base mb-4">
                             <span class="lang-en">Follow Us</span>
                             <span class="lang-ar">تابعنا</span>
                         </h4>
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 cursor-not-allowed" title="Coming Soon / قريباً">
-                                <i class="fab fa-instagram"></i>
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 cursor-not-allowed" title="Coming Soon / قريباً">
+                                <i class="fab fa-instagram text-sm sm:text-base"></i>
                             </div>
-                            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 cursor-not-allowed" title="Coming Soon / قريباً">
-                                <i class="fab fa-tiktok"></i>
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 cursor-not-allowed" title="Coming Soon / قريباً">
+                                <i class="fab fa-tiktok text-sm sm:text-base"></i>
                             </div>
-                            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 cursor-not-allowed" title="Coming Soon / قريباً">
-                                <i class="fab fa-facebook-f"></i>
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 cursor-not-allowed" title="Coming Soon / قريباً">
+                                <i class="fab fa-facebook-f text-sm sm:text-base"></i>
                             </div>
-                            <a href="https://wa.me/971555852724" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-green-600 hover:text-white transition-all" title="WhatsApp / واتساب">
-                                <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/971555852724" target="_blank" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-green-600 hover:text-white transition-all" title="WhatsApp / واتساب">
+                                <i class="fab fa-whatsapp text-sm sm:text-base"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Map - محدث (يبقى على اود ميثا لأن الخريطة نفس الموقع) -->
-                <div class="rounded-2xl overflow-hidden border border-white/10" style="min-height: 400px;">
+                <!-- Map -->
+                <div class="rounded-2xl overflow-hidden border border-white/10 h-[300px] sm:h-[400px]">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3609.0123456789!2d55.3151667!3d25.2161944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDEyJzU4LjMiTiA1NcKwMTgnNTQuNiJF!5e0!3m2!1sen!2sae!4v1234567890" 
                         width="100%" 
                         height="100%" 
-                        style="border:0; min-height: 400px; filter: grayscale(100%) invert(92%) contrast(83%);" 
+                        style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
                         allowfullscreen="" 
                         loading="lazy">
                     </iframe>
@@ -1138,28 +1069,28 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER - العنوان محدث ===== -->
-    <footer class="py-12 bg-dark border-t border-white/10">
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-8 sm:py-12 bg-dark border-t border-white/10">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div class="grid md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 <!-- Brand -->
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
                             <img src="https://i.ibb.co/cKY5GQ5X/image.png" alt="Mandi Bab Al Mandab" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h3 class="font-serif text-lg font-bold text-white">
+                            <h3 class="font-serif text-base sm:text-lg font-bold text-white">
                                 <span class="lang-en">Mandi Bab Al Mandab</span>
                                 <span class="lang-ar">مندي باب المندب</span>
                             </h3>
-                            <p class="text-xs text-secondary">
+                            <p class="text-[10px] sm:text-xs text-secondary">
                                 <span class="lang-en">Since 2008</span>
                                 <span class="lang-ar">منذ ٢٠٠٨</span>
                             </p>
                         </div>
                     </div>
-                    <p class="text-white/60 text-sm">
+                    <p class="text-white/60 text-xs sm:text-sm">
                         <span class="lang-en">Authentic Yemeni cuisine in Al Jadaf - Oud Metha, Dubai.</span>
                         <span class="lang-ar">مطبخ يمني أصيل في الجداف - اود ميثا، دبي.</span>
                     </p>
@@ -1167,28 +1098,28 @@
                 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-white font-semibold mb-4">
+                    <h4 class="text-white font-semibold text-sm sm:text-base mb-4">
                         <span class="lang-en">Quick Links</span>
                         <span class="lang-ar">روابط سريعة</span>
                     </h4>
                     <ul class="space-y-2">
-                        <li><a href="#about" class="text-white/60 hover:text-secondary transition-colors text-sm">
+                        <li><a href="#about" class="text-white/60 hover:text-secondary transition-colors text-xs sm:text-sm">
                             <span class="lang-en">About Us</span>
                             <span class="lang-ar">من نحن</span>
                         </a></li>
-                        <li><a href="#menu" class="text-white/60 hover:text-secondary transition-colors text-sm">
+                        <li><a href="#menu" class="text-white/60 hover:text-secondary transition-colors text-xs sm:text-sm">
                             <span class="lang-en">Our Menu</span>
                             <span class="lang-ar">قائمتنا</span>
                         </a></li>
-                        <li><a href="#specials" class="text-white/60 hover:text-secondary transition-colors text-sm">
+                        <li><a href="#specials" class="text-white/60 hover:text-secondary transition-colors text-xs sm:text-sm">
                             <span class="lang-en">Sacrifices</span>
                             <span class="lang-ar">الذبائح</span>
                         </a></li>
-                        <li><a href="#reviews" class="text-white/60 hover:text-secondary transition-colors text-sm">
+                        <li><a href="#reviews" class="text-white/60 hover:text-secondary transition-colors text-xs sm:text-sm">
                             <span class="lang-en">Reviews</span>
                             <span class="lang-ar">التقييمات</span>
                         </a></li>
-                        <li><a href="#contact" class="text-white/60 hover:text-secondary transition-colors text-sm">
+                        <li><a href="#contact" class="text-white/60 hover:text-secondary transition-colors text-xs sm:text-sm">
                             <span class="lang-en">Contact</span>
                             <span class="lang-ar">اتصل بنا</span>
                         </a></li>
@@ -1197,17 +1128,17 @@
                 
                 <!-- Contact -->
                 <div>
-                    <h4 class="text-white font-semibold mb-4">
+                    <h4 class="text-white font-semibold text-sm sm:text-base mb-4">
                         <span class="lang-en">Contact</span>
                         <span class="lang-ar">الاتصال</span>
                     </h4>
-                    <p class="text-white/60 text-sm mb-2">
+                    <p class="text-white/60 text-xs sm:text-sm mb-2">
                         <span class="lang-en">Al Jadaf - Oud Metha, Dubai</span>
                         <span class="lang-ar">الجداف - اود ميثا، دبي</span>
                     </p>
-                    <p class="text-white/60 text-sm mb-2">04 292 5051</p>
-                    <p class="text-white/60 text-sm mb-2">055 585 2724</p>
-                    <p class="text-white/50 text-xs">
+                    <p class="text-white/60 text-xs sm:text-sm mb-2">04 292 5051</p>
+                    <p class="text-white/60 text-xs sm:text-sm mb-2">055 585 2724</p>
+                    <p class="text-white/50 text-[10px] sm:text-xs">
                         <span class="lang-en">12:00 PM – 12:00 AM</span>
                         <span class="lang-ar">١٢:٠٠ ظهراً – ١٢:٠٠ صباحاً</span>
                     </p>
@@ -1215,8 +1146,8 @@
             </div>
             
             <!-- Copyright -->
-            <div class="border-t border-white/10 pt-8 text-center">
-                <p class="text-white/40 text-sm">
+            <div class="border-t border-white/10 pt-6 sm:pt-8 text-center">
+                <p class="text-white/40 text-xs sm:text-sm">
                     © 2024 
                     <span class="lang-en">Mandi Bab Al Mandab. All rights reserved.</span>
                     <span class="lang-ar">مندي باب المندب. جميع الحقوق محفوظة.</span>
@@ -1227,145 +1158,168 @@
 
     <!-- ===== FULL MENU MODAL ===== -->
     <div class="menu-modal" id="menuModal">
-        <div class="min-h-screen p-4 md:p-8">
+        <div class="min-h-screen p-4 sm:p-8">
             <div class="max-w-7xl mx-auto">
                 <!-- Header -->
-                <div class="flex justify-between items-center mb-8 sticky top-0 bg-dark/95 backdrop-blur-lg p-4 rounded-xl border border-white/10 z-10">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
+                <div class="flex justify-between items-center mb-6 sm:mb-8 sticky top-0 bg-dark/95 backdrop-blur-lg p-4 rounded-xl border border-white/10 z-10">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
                             <img src="https://i.ibb.co/cKY5GQ5X/image.png" alt="Mandi Bab Al Mandab" class="w-full h-full object-cover">
                         </div>
-                        <h2 class="font-serif text-3xl font-bold text-white">
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white">
                             <span class="lang-en">Complete Menu</span>
                             <span class="lang-ar">القائمة الكاملة</span>
                         </h2>
                     </div>
-                    <button onclick="closeMenu()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all text-white">
-                        <i class="fas fa-times"></i>
+                    <button onclick="closeMenu()" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all text-white">
+                        <i class="fas fa-times text-sm sm:text-base"></i>
                     </button>
                 </div>
                 
                 <!-- Category Filter -->
-                <div class="flex flex-wrap gap-2 mb-8" id="category-filters">
-                    <button onclick="filterCategory('all')" class="category-btn px-4 py-2 rounded-full bg-secondary text-primary font-semibold text-sm">
+                <div class="flex flex-wrap gap-2 mb-6 sm:mb-8" id="category-filters">
+                    <button onclick="filterCategory('all')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary text-primary font-semibold text-xs sm:text-sm">
                         <span class="lang-en">All</span>
                         <span class="lang-ar">الكل</span>
                     </button>
-                    <button onclick="filterCategory('salads')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('salads')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Salads</span>
                         <span class="lang-ar">سلطات</span>
                     </button>
-                    <button onclick="filterCategory('entrees')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('entrees')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Appetizers</span>
                         <span class="lang-ar">مقبلات</span>
                     </button>
-                    <button onclick="filterCategory('meat')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('meat')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Meat</span>
                         <span class="lang-ar">لحوم</span>
                     </button>
-                    <button onclick="filterCategory('chicken')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('chicken')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Chicken</span>
                         <span class="lang-ar">دجاج</span>
                     </button>
-                    <button onclick="filterCategory('fish')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('fish')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Fish</span>
                         <span class="lang-ar">سمك</span>
                     </button>
-                    <button onclick="filterCategory('popular')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('popular')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Popular</span>
                         <span class="lang-ar">شعبيات</span>
                     </button>
-                    <button onclick="filterCategory('grilled')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('grilled')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Grilled</span>
                         <span class="lang-ar">مشاوي</span>
                     </button>
-                    <button onclick="filterCategory('sweets')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('sweets')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Sweets</span>
                         <span class="lang-ar">حلويات</span>
                     </button>
-                    <button onclick="filterCategory('drinks')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('drinks')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Drinks</span>
                         <span class="lang-ar">مشروبات</span>
                     </button>
-                    <button onclick="filterCategory('extras')" class="category-btn px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-sm">
+                    <button onclick="filterCategory('extras')" class="category-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 text-white hover:bg-white/20 font-semibold text-xs sm:text-sm">
                         <span class="lang-en">Extras</span>
                         <span class="lang-ar">إضافات</span>
                     </button>
                 </div>
                 
                 <!-- Menu Grid -->
-                <div id="menuGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                <div id="menuGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
             </div>
         </div>
     </div>
 
-    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // ===== مؤشر الماوس =====
-        (function() {
-            const cursorDot = document.getElementById('cursor-dot');
-            const cursorOutline = document.getElementById('cursor-outline');
-            
-            if (!cursorDot || !cursorOutline) return;
-            
-            cursorDot.style.opacity = '1';
-            cursorOutline.style.opacity = '1';
-            
-            let mouseX = 0, mouseY = 0;
-            let outlineX = 0, outlineY = 0;
-            
-            window.addEventListener('mousemove', function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                
-                cursorDot.style.left = mouseX + 'px';
-                cursorDot.style.top = mouseY + 'px';
-            });
-            
-            function animateCursor() {
-                outlineX += (mouseX - outlineX) * 0.15;
-                outlineY += (mouseY - outlineY) * 0.15;
-                
-                cursorOutline.style.left = outlineX + 'px';
-                cursorOutline.style.top = outlineY + 'px';
-                
-                requestAnimationFrame(animateCursor);
+        // ===== قائمة التقييمات =====
+        const reviewsData = [
+            {
+                text: "Bab Al Mandab Mandi Restaurant is hands down one of the best places in town for authentic Yemeni mandi. The flavors are rich, well-balanced, and deeply traditional, reflecting true Yemeni culinary heritage.",
+                textAr: "مطعم مندي باب المندب بكل بساطة من أفضل الأماكن في المدينة للمندي اليمني الأصيل. النكهات غنية ومتوازنة وتقليدية بعمق، تعكس التراث اليمني الحقيقي.",
+                stars: 5,
+                date: "3 weeks ago",
+                dateAr: "منذ ٣ أسابيع",
+                lang: 'en'
+            },
+            {
+                text: "Le service était parfait, la serveuse nous a conseillé sur tous les différents plats. On a pris le meat makhmoud qui était à tomber par terre tellement il était tendre.",
+                textAr: "الخدمة كانت مثالية، نادلة المطعم نصحتنا بجميع الأطباق المختلفة. طلبنا مخمود لحم وكان طرياً بشكل لا يصدق.",
+                stars: 5,
+                date: "3 semaines",
+                dateAr: "منذ ٣ أسابيع",
+                lang: 'fr'
+            },
+            {
+                text: "تجربة رائعة بكل المقاييس في باب المندب - الجداف. طلبت مخمود لحم وكان اللحم فريش جدا وطعمه مذهل.",
+                textAr: "تجربة رائعة بكل المقاييس في باب المندب - الجداف. طلبت مخمود لحم وكان اللحم فريش جدا وطعمه مذهل.",
+                stars: 5,
+                date: "il y a un mois",
+                dateAr: "منذ شهر",
+                lang: 'ar'
+            },
+            {
+                text: "من افضل المطاعم اليمنية الي زرتها، اول مرة بجرب المخمود باللحم وطعمه ولا اطيب، الخدمة ممتازة بوجود الكابتن زكريا.",
+                textAr: "من افضل المطاعم اليمنية الي زرتها، اول مرة بجرب المخمود باللحم وطعمه ولا اطيب، الخدمة ممتازة بوجود الكابتن زكريا.",
+                stars: 5,
+                date: "il y a un mois",
+                dateAr: "منذ شهر",
+                lang: 'ar'
+            },
+            {
+                text: "If you wish to explore the traditional taste of YAMAN FOOD this restaurant is a great choice. It's a truly family friendly place, and the staff are very knowledgeable.",
+                textAr: "إذا كنت ترغب في استكشاف الطعم التقليدي للطعام اليمني، فهذا المطعم خيار رائع. إنه مكان مناسب للعائلات والموظفين ذوي معرفة عالية.",
+                stars: 5,
+                date: "3 weeks ago",
+                dateAr: "منذ ٣ أسابيع",
+                lang: 'en'
+            },
+            {
+                text: "من أجمل المطاعم التي تقدم المأكولات اليمنية الأصيلة بنكهات مميزة. يتميز مطعم باب المندب بتنوع أطباقه وجودة مكوناته الطازجة.",
+                textAr: "من أجمل المطاعم التي تقدم المأكولات اليمنية الأصيلة بنكهات مميزة. يتميز مطعم باب المندب بتنوع أطباقه وجودة مكوناته الطازجة.",
+                stars: 5,
+                date: "il y a 3 mois",
+                dateAr: "منذ ٣ أشهر",
+                lang: 'ar'
             }
+        ];
+
+        // ===== عرض التقييمات =====
+        function displayReviews() {
+            const grid = document.getElementById('reviews-grid');
+            if (!grid) return;
             
-            animateCursor();
+            grid.innerHTML = '';
             
-            window.addEventListener('mouseenter', function() {
-                cursorDot.style.opacity = '1';
-                cursorOutline.style.opacity = '1';
-            });
-            
-            window.addEventListener('mouseleave', function() {
-                cursorDot.style.opacity = '0';
-                cursorOutline.style.opacity = '0';
-            });
-            
-            function addHoverEffects() {
-                const hoverElements = document.querySelectorAll('a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card');
+            reviewsData.forEach(review => {
+                const card = document.createElement('div');
+                card.className = 'review-card';
                 
-                hoverElements.forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        cursorDot.classList.add('hover');
-                        cursorOutline.classList.add('hover');
-                    });
-                    
-                    el.addEventListener('mouseleave', () => {
-                        cursorDot.classList.remove('hover');
-                        cursorOutline.classList.remove('hover');
-                    });
-                });
-            }
-            
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', addHoverEffects);
-            } else {
-                addHoverEffects();
-            }
-        })();
+                // Determine which text to show based on language
+                const displayText = document.documentElement.dir === 'rtl' ? review.textAr : review.text;
+                const displayDate = document.documentElement.dir === 'rtl' ? review.dateAr : review.date;
+                
+                // Add rtl class for Arabic reviews
+                if (review.lang === 'ar' && document.documentElement.dir === 'rtl') {
+                    card.setAttribute('dir', 'rtl');
+                }
+                
+                let starsHtml = '';
+                for (let i = 0; i < review.stars; i++) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                }
+                
+                card.innerHTML = `
+                    <div class="review-stars">
+                        ${starsHtml}
+                    </div>
+                    <p class="review-text">"${displayText}"</p>
+                    <div class="review-meta">
+                        ★★★★★ · ${displayDate}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
         // ===== قائمة الطعام الكاملة =====
         const menuData = [
@@ -1749,6 +1703,7 @@
             
             displayFeaturedItems();
             displaySpecials();
+            displayReviews();
             
             if (document.getElementById('menuModal').classList.contains('open')) {
                 const activeBtn = document.querySelector('.category-btn.bg-secondary');
@@ -1770,6 +1725,125 @@
             }
         }
 
+        // ===== Mobile Menu Toggle =====
+        function initMobileMenu() {
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Close mobile menu when clicking a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        }
+
+        // ===== مؤشر الماوس للكمبيوتر =====
+        function initCursor() {
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorOutline = document.getElementById('cursor-outline');
+            
+            if (!cursorDot || !cursorOutline) return;
+            
+            let mouseX = 0, mouseY = 0;
+            let outlineX = 0, outlineY = 0;
+            
+            window.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                cursorDot.style.left = mouseX + 'px';
+                cursorDot.style.top = mouseY + 'px';
+            });
+            
+            function animateCursor() {
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                
+                cursorOutline.style.left = outlineX + 'px';
+                cursorOutline.style.top = outlineY + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            }
+            
+            animateCursor();
+            
+            window.addEventListener('mouseenter', function() {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+            });
+            
+            window.addEventListener('mouseleave', function() {
+                cursorDot.style.opacity = '0';
+                cursorOutline.style.opacity = '0';
+            });
+            
+            // Hover effects
+            const hoverElements = document.querySelectorAll('a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorDot.classList.add('hover');
+                    cursorOutline.classList.add('hover');
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursorDot.classList.remove('hover');
+                    cursorOutline.classList.remove('hover');
+                });
+            });
+        }
+
+        // ===== مؤشر الجوال - نقطة ذهبية تتبع الإصبع =====
+        function initTouchCursor() {
+            const touchDot = document.getElementById('touch-dot');
+            if (!touchDot) return;
+            
+            let touchActive = false;
+            
+            document.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 0) {
+                    touchActive = true;
+                    touchDot.style.display = 'block';
+                    const touch = e.touches[0];
+                    touchDot.style.left = touch.clientX + 'px';
+                    touchDot.style.top = touch.clientY + 'px';
+                    touchDot.classList.add('active');
+                }
+            });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches.length > 0 && touchActive) {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    touchDot.style.left = touch.clientX + 'px';
+                    touchDot.style.top = touch.clientY + 'px';
+                }
+            }, { passive: false });
+            
+            document.addEventListener('touchend', function() {
+                touchActive = false;
+                touchDot.classList.remove('active');
+                setTimeout(() => {
+                    touchDot.style.display = 'none';
+                }, 150);
+            });
+            
+            document.addEventListener('touchcancel', function() {
+                touchActive = false;
+                touchDot.classList.remove('active');
+                setTimeout(() => {
+                    touchDot.style.display = 'none';
+                }, 150);
+            });
+        }
+
         // ===== إخفاء اللودر =====
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -1778,6 +1852,10 @@
             
             displayFeaturedItems();
             displaySpecials();
+            displayReviews();
+            initMobileMenu();
+            initCursor();
+            initTouchCursor();
             
             setTimeout(() => {
                 const hoverElements = document.querySelectorAll('a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card');
@@ -1809,6 +1887,12 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
                 }
             });
         });
