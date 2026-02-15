@@ -80,88 +80,81 @@
             font-family: 'Inter', 'Noto Naskh Arabic', sans-serif;
         }
         
-        /* ===== مؤشر الماوس للكمبيوتر فقط - مع التمرير العادي ===== */
+        /* ===== مؤشر الماوس للكمبيوتر فقط ===== */
         @media (min-width: 769px) {
-            body {
-                cursor: none !important;
-            }
-            
-            a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card {
-                cursor: none !important;
-            }
-            
-            .cursor-dot {
-                width: 8px;
-                height: 8px;
-                background: #c9a227;
-                border-radius: 50%;
-                position: fixed;
-                top: 0;
-                left: 0;
-                pointer-events: none;
-                z-index: 999999;
-                transform: translate(-50%, -50%);
-                box-shadow: 0 0 20px #c9a227, 0 0 40px rgba(201, 162, 39, 0.5);
-                opacity: 1;
-                transition: width 0.1s, height 0.1s, background 0.1s;
-            }
-            
-            .cursor-outline {
-                width: 40px;
-                height: 40px;
-                border: 2px solid #c9a227;
-                border-radius: 50%;
-                position: fixed;
-                top: 0;
-                left: 0;
-                pointer-events: none;
-                z-index: 999998;
-                transform: translate(-50%, -50%);
-                backdrop-filter: blur(4px);
-                background: rgba(201, 162, 39, 0.1);
-                box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
-                opacity: 1;
-                transition: width 0.15s, height 0.15s, border 0.15s, background 0.15s;
-            }
-            
-            .cursor-dot.hover {
-                width: 12px;
-                height: 12px;
-                background: #ffd700;
-                box-shadow: 0 0 30px #ffd700, 0 0 60px rgba(255, 215, 0, 0.6);
-            }
-            
-            .cursor-outline.hover {
-                width: 60px;
-                height: 60px;
-                border: 2px solid #ffd700;
-                background: rgba(255, 215, 0, 0.15);
-                box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-            }
-        }
-        
-        /* ===== الجوال - لا مؤشر نهائياً ===== */
-        @media (max-width: 768px) {
             .cursor-dot, .cursor-outline {
-                display: none !important;
-            }
-            body, a, button, .dish-card, .special-card, .full-menu-item, .nav-link, .category-btn, .review-card {
-                cursor: auto !important;
+                display: block;
             }
         }
         
-        .nav-glass {
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(201, 162, 39, 0.2);
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #c9a227;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px #c9a227, 0 0 40px rgba(201, 162, 39, 0.5);
+            transition: width 0.1s, height 0.1s, background 0.1s;
+            display: none;
         }
         
-        /* ===== موبايل ميني - شفاف تماماً ===== */
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #c9a227;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999998;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(4px);
+            background: rgba(201, 162, 39, 0.1);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+            transition: width 0.15s, height 0.15s, border 0.15s, background 0.15s;
+            display: none;
+        }
+        
+        /* ===== مؤشر الجوال - نقطة ذهبية مع تمرير عادي ===== */
+        .touch-dot {
+            display: none;
+            width: 15px;
+            height: 15px;
+            background: #c9a227;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 25px #c9a227, 0 0 45px rgba(201, 162, 39, 0.7);
+            transition: width 0.2s, height 0.2s, opacity 0.3s;
+            opacity: 0;
+        }
+        
+        .touch-dot.active {
+            opacity: 1;
+        }
+        
+        .touch-dot.press {
+            width: 22px;
+            height: 22px;
+            background: #ffd700;
+            box-shadow: 0 0 35px #ffd700, 0 0 70px rgba(255, 215, 0, 0.8);
+        }
+        
+        /* ===== موبايل ميني - شفاف مع blur ===== */
         .mobile-menu {
             position: fixed;
             inset: 0;
-            background: rgba(26, 35, 126, 0.85);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 9998;
@@ -176,6 +169,38 @@
         .mobile-menu.active {
             opacity: 1;
             visibility: visible;
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 9999;
+        }
+        
+        .mobile-menu-close:hover {
+            background: #c9a227;
+            color: #1a237e;
+            border-color: #c9a227;
+        }
+        
+        .nav-glass {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 162, 39, 0.2);
         }
         
         .loader {
@@ -437,10 +462,36 @@
             z-index: 2;
         }
         
+        /* ===== Email Coming Soon ===== */
+        .email-soon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .email-soon:hover::after {
+            content: 'Coming Soon / قريباً';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #c9a227;
+            color: #1a237e;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        
         /* ===== تحسينات الجوال ===== */
         @media (max-width: 768px) {
-            /* إلغاء أي مؤشرات */
-            .cursor-dot, .cursor-outline, .touch-dot {
+            /* المؤشر الذهبي للجوال */
+            .touch-dot {
+                display: block;
+            }
+            
+            /* إخفاء مؤشر الكمبيوتر */
+            .cursor-dot, .cursor-outline {
                 display: none !important;
             }
             
@@ -515,11 +566,6 @@
             .nav-glass {
                 padding: 0.5rem;
             }
-            
-            /* إخفاء بعض الخيارات في الجوال */
-            .hidden\:xs {
-                display: none;
-            }
         }
         
         /* تحسينات للأجهزة الصغيرة جداً */
@@ -548,9 +594,12 @@
 </head>
 <body class="bg-dark text-light antialiased" dir="ltr">
 
-    <!-- ===== مؤشر الماوس للكمبيوتر فقط - يشتغل مع التمرير ===== -->
+    <!-- ===== مؤشر الماوس للكمبيوتر ===== -->
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
+    
+    <!-- ===== مؤشر الجوال - نقطة ذهبية تتبع الإصبع ===== -->
+    <div class="touch-dot" id="touch-dot"></div>
 
     <!-- ===== LOADER ===== -->
     <div class="loader" id="loader">
@@ -569,7 +618,7 @@
         </div>
     </div>
 
-    <!-- ===== NAVIGATION ===== -->
+    <!-- ===== NAVIGATION - فقط 3 أشرطة وعلامة اللغة ===== -->
     <nav class="fixed top-0 left-0 w-full z-50 nav-glass" id="navbar">
         <div class="mx-2 sm:mx-4 mt-2 sm:mt-4 rounded-full px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between max-w-7xl mx-auto">
             <!-- Logo -->
@@ -577,7 +626,7 @@
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary border-2 border-secondary flex items-center justify-center overflow-hidden">
                     <img src="https://i.ibb.co/cKY5GQ5X/image.png" alt="Mandi Bab Al Mandab" class="w-full h-full object-cover">
                 </div>
-                <div class="hidden xs:block sm:hidden md:block">
+                <div class="hidden xs:block sm:block">
                     <h1 class="font-serif text-sm sm:text-base md:text-lg font-bold text-white leading-none">
                         <span class="lang-en">Mandi Bab Al Mandab</span>
                         <span class="lang-ar">مندي باب المندب</span>
@@ -589,54 +638,15 @@
                 </div>
             </a>
             
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-6">
-                <a href="#about" class="nav-link text-sm uppercase tracking-wider text-white/80 hover:text-secondary transition-colors">
-                    <span class="lang-en">About</span>
-                    <span class="lang-ar">من نحن</span>
-                </a>
-                <a href="#menu" class="nav-link text-sm uppercase tracking-wider text-white/80 hover:text-secondary transition-colors">
-                    <span class="lang-en">Menu</span>
-                    <span class="lang-ar">القائمة</span>
-                </a>
-                <a href="#specials" class="nav-link text-sm uppercase tracking-wider text-white/80 hover:text-secondary transition-colors">
-                    <span class="lang-en">Sacrifices</span>
-                    <span class="lang-ar">الذبائح</span>
-                </a>
-                <a href="#reviews" class="nav-link text-sm uppercase tracking-wider text-white/80 hover:text-secondary transition-colors">
-                    <span class="lang-en">Reviews</span>
-                    <span class="lang-ar">التقييمات</span>
-                </a>
-                <a href="#contact" class="nav-link text-sm uppercase tracking-wider text-white/80 hover:text-secondary transition-colors">
-                    <span class="lang-en">Contact</span>
-                    <span class="lang-ar">اتصل بنا</span>
-                </a>
-            </div>
-            
-            <!-- Right Side - خيارات سريعة -->
-            <div class="flex items-center gap-1 sm:gap-2 md:gap-3">
-                <!-- Location - سطح المكتب فقط -->
-                <a href="https://www.google.com/maps?q=25.2161944,55.3151667" target="_blank" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 items-center justify-center hover:bg-secondary hover:border-secondary transition-all group">
-                    <i class="fas fa-map-marker-alt text-white/80 group-hover:text-primary text-sm md:text-base"></i>
-                </a>
-                
-                <!-- Call - سطح المكتب فقط -->
-                <a href="tel:+971555852724" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 items-center justify-center hover:bg-secondary hover:border-secondary transition-all group">
-                    <i class="fas fa-phone text-white/80 group-hover:text-primary text-sm md:text-base"></i>
-                </a>
-                
-                <!-- Order - سطح المكتب فقط -->
-                <a href="https://wa.me/971555852724" target="_blank" class="hidden sm:flex w-8 h-8 md:w-9 md:h-9 rounded-full bg-green-600/20 border border-green-600/50 items-center justify-center hover:bg-green-600 transition-all group">
-                    <i class="fab fa-whatsapp text-green-500 group-hover:text-white text-sm md:text-base"></i>
-                </a>
-                
+            <!-- Right Side - فقط 3 أشرطة وعلامة اللغة -->
+            <div class="flex items-center gap-2">
                 <!-- Language Switcher -->
                 <button onclick="toggleLanguage()" class="w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all group">
                     <span class="text-[10px] md:text-xs font-bold text-white group-hover:text-primary" id="lang-btn">AR</span>
                 </button>
                 
-                <!-- Mobile Menu Toggle -->
-                <button id="mobile-toggle" class="lg:hidden w-8 h-8 md:w-9 md:h-9 flex flex-col items-center justify-center gap-1 group">
+                <!-- Mobile Menu Toggle (3 أشرطة فقط) -->
+                <button id="mobile-toggle" class="w-8 h-8 md:w-9 md:h-9 flex flex-col items-center justify-center gap-1 group">
                     <span class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-5 group-hover:bg-secondary"></span>
                     <span class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-5 group-hover:bg-secondary"></span>
                     <span class="w-4 h-0.5 bg-white transition-all duration-300 group-hover:w-5 group-hover:bg-secondary"></span>
@@ -645,8 +655,11 @@
         </div>
     </nav>
 
-    <!-- ===== Mobile Menu - شفاف وblur ===== -->
+    <!-- ===== Mobile Menu - شفاف مع blur و X ===== -->
     <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-close" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
         <div class="text-center">
             <a href="#about" class="block text-2xl sm:text-3xl font-serif text-white mb-6 hover:text-secondary transition-colors mobile-link">
                 <span class="lang-en">About</span>
@@ -668,17 +681,6 @@
                 <span class="lang-en">Contact</span>
                 <span class="lang-ar">اتصل بنا</span>
             </a>
-            <div class="flex justify-center gap-4 mt-8">
-                <a href="https://wa.me/971555852724" target="_blank" class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center">
-                    <i class="fab fa-whatsapp text-white text-xl"></i>
-                </a>
-                <a href="tel:+971555852724" class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
-                    <i class="fas fa-phone text-primary text-xl"></i>
-                </a>
-                <a href="https://www.google.com/maps?q=25.2161944,55.3151667" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                </a>
-            </div>
         </div>
     </div>
 
@@ -888,7 +890,7 @@
         </div>
     </section>
 
-    <!-- ===== REVIEWS SECTION - بدون فرنسي ===== -->
+    <!-- ===== REVIEWS SECTION ===== -->
     <section class="py-16 sm:py-24 bg-gradient-to-b from-dark to-primary/10" id="reviews">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12 sm:mb-16">
@@ -931,7 +933,7 @@
             </div>
             
             <div class="bg-dark/80 backdrop-blur-md rounded-2xl p-4 sm:p-8 border border-white/10">
-                <div class="grid md:grid-cols-2 gap-4 sm:gap-8">
+                <div class="grid md:grid-cols-3 gap-4 sm:gap-8">
                     <!-- WhatsApp -->
                     <div class="text-center p-4 sm:p-6 bg-white/5 rounded-xl">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-green-600/20 rounded-full flex items-center justify-center mb-3 sm:mb-4">
@@ -942,14 +944,34 @@
                             <span class="lang-ar">واتساب</span>
                         </h3>
                         <p class="text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">
-                            <span class="lang-en">Quick response on WhatsApp</span>
-                            <span class="lang-ar">رد سريع عبر واتساب</span>
+                            <span class="lang-en">Quick response</span>
+                            <span class="lang-ar">رد سريع</span>
                         </p>
                         <a href="https://wa.me/971555852724" target="_blank" class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-full font-semibold text-sm sm:text-base hover:bg-green-700 transition-all gap-2">
                             <i class="fab fa-whatsapp"></i>
-                            <span class="lang-en">Chat Now</span>
-                            <span class="lang-ar">محادثة الآن</span>
+                            <span class="lang-en">Chat</span>
+                            <span class="lang-ar">محادثة</span>
                         </a>
+                    </div>
+                    
+                    <!-- Email - Coming Soon -->
+                    <div class="text-center p-4 sm:p-6 bg-white/5 rounded-xl email-soon">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-secondary/20 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                            <i class="fas fa-envelope text-3xl sm:text-4xl text-secondary"></i>
+                        </div>
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-white mb-2">
+                            <span class="lang-en">Email</span>
+                            <span class="lang-ar">البريد</span>
+                        </h3>
+                        <p class="text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">
+                            <span class="lang-en">Send us a message</span>
+                            <span class="lang-ar">راسلنا</span>
+                        </p>
+                        <div class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-white/10 text-white/50 rounded-full font-semibold text-sm sm:text-base cursor-not-allowed">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span class="lang-en">Coming Soon</span>
+                            <span class="lang-ar">قريباً</span>
+                        </div>
                     </div>
                     
                     <!-- Call Us -->
@@ -959,16 +981,16 @@
                         </div>
                         <h3 class="font-serif text-lg sm:text-xl font-bold text-white mb-2">
                             <span class="lang-en">Call Us</span>
-                            <span class="lang-ar">اتصل بنا</span>
+                            <span class="lang-ar">اتصل</span>
                         </h3>
                         <p class="text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">
-                            <span class="lang-en">Speak directly with our team</span>
-                            <span class="lang-ar">تحدث مباشرة مع فريقنا</span>
+                            <span class="lang-en">Speak directly</span>
+                            <span class="lang-ar">تحدث مباشرة</span>
                         </p>
                         <a href="tel:+971555852724" class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-secondary text-primary rounded-full font-semibold text-sm sm:text-base hover:bg-secondary/90 transition-all gap-2">
                             <i class="fas fa-phone"></i>
-                            <span class="lang-en">Call Now</span>
-                            <span class="lang-ar">اتصل الآن</span>
+                            <span class="lang-en">Call</span>
+                            <span class="lang-ar">اتصل</span>
                         </a>
                     </div>
                 </div>
@@ -1006,7 +1028,7 @@
         </div>
     </section>
 
-    <!-- ===== LOCATION SECTION - خريطة محدثة ===== -->
+    <!-- ===== LOCATION SECTION ===== -->
     <section class="py-16 sm:py-24 bg-dark" id="location">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-12 sm:mb-16">
@@ -1109,7 +1131,7 @@
                     </div>
                 </div>
                 
-                <!-- Map - Mandi Bab Al Mandab -->
+                <!-- Map -->
                 <div class="rounded-2xl overflow-hidden border border-white/10 h-[300px] sm:h-[400px] shadow-xl">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.0123456789!2d55.3151667!3d25.2161944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5f5f5f5f5f5f%3A0x0!2zMjXCsDEyJzU4LjMiTiA1NcKwMTgnNTQuNiJF!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
@@ -1287,7 +1309,7 @@
     </div>
 
     <script>
-        // ===== قائمة التقييمات - بدون فرنسي =====
+        // ===== قائمة التقييمات =====
         const reviewsData = [
             {
                 text: "Bab Al Mandab Mandi Restaurant is hands down one of the best places in town for authentic Yemeni mandi. The flavors are rich, well-balanced, and deeply traditional, reflecting true Yemeni culinary heritage.",
@@ -1779,10 +1801,15 @@
         function initMobileMenu() {
             const mobileToggle = document.getElementById('mobile-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
+            const mobileClose = document.getElementById('mobile-menu-close');
             
             if (mobileToggle && mobileMenu) {
                 mobileToggle.addEventListener('click', function() {
                     mobileMenu.classList.toggle('active');
+                });
+                
+                mobileClose.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
                 });
                 
                 const mobileLinks = mobileMenu.querySelectorAll('a');
@@ -1794,10 +1821,8 @@
             }
         }
 
-        // ===== مؤشر الماوس للكمبيوتر فقط =====
+        // ===== مؤشر الماوس للكمبيوتر =====
         function initCursor() {
-            if (window.innerWidth <= 768) return;
-            
             const cursorDot = document.getElementById('cursor-dot');
             const cursorOutline = document.getElementById('cursor-outline');
             
@@ -1850,6 +1875,72 @@
             });
         }
 
+        // ===== مؤشر الجوال - نقطة ذهبية مع تمرير عادي =====
+        function initTouchCursor() {
+            const touchDot = document.getElementById('touch-dot');
+            if (!touchDot) return;
+            
+            let touchTimeout;
+            let lastTouchX = 0, lastTouchY = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    lastTouchX = touch.clientX;
+                    lastTouchY = touch.clientY;
+                    
+                    touchDot.style.left = lastTouchX + 'px';
+                    touchDot.style.top = lastTouchY + 'px';
+                    touchDot.classList.add('active');
+                    touchDot.classList.add('press');
+                    
+                    // إخفاء المؤشر بعد ثانية من عدم الحركة
+                    clearTimeout(touchTimeout);
+                    touchTimeout = setTimeout(() => {
+                        touchDot.classList.remove('active');
+                    }, 1000);
+                }
+            }, { passive: true });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    lastTouchX = touch.clientX;
+                    lastTouchY = touch.clientY;
+                    
+                    touchDot.style.left = lastTouchX + 'px';
+                    touchDot.style.top = lastTouchY + 'px';
+                    touchDot.classList.add('active');
+                    touchDot.classList.add('press');
+                    
+                    // إعادة تعيين المؤقت
+                    clearTimeout(touchTimeout);
+                    touchTimeout = setTimeout(() => {
+                        touchDot.classList.remove('active');
+                    }, 1000);
+                }
+            }, { passive: true });
+            
+            document.addEventListener('touchend', function() {
+                touchDot.classList.remove('press');
+                
+                // إخفاء المؤشر بعد ثانية
+                clearTimeout(touchTimeout);
+                touchTimeout = setTimeout(() => {
+                    touchDot.classList.remove('active');
+                }, 500);
+            }, { passive: true });
+            
+            document.addEventListener('touchcancel', function() {
+                touchDot.classList.remove('press');
+                
+                clearTimeout(touchTimeout);
+                touchTimeout = setTimeout(() => {
+                    touchDot.classList.remove('active');
+                }, 500);
+            }, { passive: true });
+        }
+
         // ===== إخفاء اللودر =====
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -1861,6 +1952,13 @@
             displayReviews();
             initMobileMenu();
             initCursor();
+            initTouchCursor();
+            
+            // إظهار المؤشر للكمبيوتر
+            if (window.innerWidth > 768) {
+                document.querySelector('.cursor-dot').style.display = 'block';
+                document.querySelector('.cursor-outline').style.display = 'block';
+            }
         });
 
         // ===== إغلاق المودال بالـ ESC =====
